@@ -9,10 +9,10 @@ namespace ScriptureMemory
         {
             var scriptures = new List<Scripture>()
             {
-                new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."),
-                new Scripture("Romans 3:23", "For all have sinned and fall short of the glory of God."),
-                new Scripture("Romans 6:23", "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."),
-                new Scripture("Philippians 4:13", "I can do all things through him who gives me strength.")
+                new Scripture("Alma 37:35", "O, remember, my son, and learn wisdom in thy youth; yea, learn in thy youth to keep the commandments of God."),
+                new Scripture("Moses 1:39", "For behold, this is my work and my glory—to bring to pass the immortality and eternal life of man."),
+                new Scripture("2 Nephi 2:25", "Adam fell that men might be; and men are, that they might have joy."),
+                new Scripture("Amos 3:7", "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.")
             };
 
             // choose a random scripture to present to the user
