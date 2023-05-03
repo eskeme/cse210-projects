@@ -7,8 +7,19 @@ namespace ScriptureMemory
     {
         static void Main(string[] args)
         {
+            var scriptures = new List<Scripture>()
+            {
+                new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."),
+                new Scripture("Romans 3:23", "For all have sinned and fall short of the glory of God."),
+                new Scripture("Romans 6:23", "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."),
+                new Scripture("Philippians 4:13", "I can do all things through him who gives me strength.")
+            };
+
+            // choose a random scripture to present to the user
+            var random = new Random();
+            var scripture = scriptures[random.Next(scriptures.Count)];
+
             // Create a new scripture and display it
-            var scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
             DisplayScripture(scripture);
 
             // Hide words from the scripture until all words are hidden or the user types "quit"
@@ -59,72 +70,75 @@ namespace ScriptureMemory
             }
         }
     }
+}
 
-    class Scripture
-    {
-        public string Reference { get; }
-        public List<Verse> Verses { get; }
-        public int WordCount { get; }
-
-        public Scripture(string reference, string text)
+        class Scripture
         {
-            Reference = reference;
-            Verses = new List<Verse>();
-            var verseTexts = text.Split(';'); // split the text into verses, assuming semicolon as the separator
-            foreach (var verseText in verseTexts)
+            public string Reference { get; }
+            public List<Verse> Verses { get; }
+            public int WordCount { get; }
+
+            public Scripture(string reference, string text)
             {
-                Verses.Add(new Verse(verseText));
+                Reference = reference;
+                Verses = new List<Verse>();
+                var verseTexts = text.Split(';'); // split the text into verses, assuming semicolon as the separator
+                foreach (var verseText in verseTexts)
+                {
+                    Verses.Add(new Verse(verseText));
+                }
+                WordCount = GetWordCount();
             }
-            WordCount = GetWordCount();
-        }
 
-        int GetWordCount()
-        {
-            var count = 0;
-            foreach (var verse in Verses)
+            int GetWordCount()
             {
-                count += verse.Words.Count;
+                var count = 0;
+                foreach (var verse in Verses)
+                {
+                    count += verse.Words.Count;
+                }
+                return count;
             }
-            return count;
-        }
 
-        public Word HideRandomWord(List<Word> excludedWords)
-        {
-            var random = new Random();
-            Word word;
-            do
+            public Word HideRandomWord(List<Word> excludedWords)
             {
-                var verseIndex = random.Next(Verses.Count);
-                var verse = Verses[verseIndex];
-                var wordIndex = random.Next(verse.Words.Count);
-                word = verse.Words[wordIndex];
-            } while (excludedWords.Contains(word));
-            return word;
-        }
-    }
-
-    class Verse
-    {
-        public List<Word> Words { get; }
-
-        public Verse(string text)
-        {
-            Words = new List<Word>();
-            var wordTexts = text.Split(' '); // split the text into words, assuming space as the separator
-            foreach (var wordText in wordTexts)
-            {
-                Words.Add(new Word(wordText));
+                var random = new Random();
+                Word word;
+                do
+                {
+                    var verseIndex = random.Next(Verses.Count);
+                    var verse = Verses[verseIndex];
+                    var wordIndex = random.Next(verse.Words.Count);
+                    word = verse.Words[wordIndex];
+                } while (excludedWords.Contains(word));
+                return word;
             }
         }
-    }
 
-    class Word
+        class Verse
+{
+    public List<Word> Words { get; }
+
+    public Verse(string text)
     {
-        public string Text { get; }
-
-        public Word(string text)
+        Words = new List<Word>();
+        var wordTexts = text.Split(' '); // split the text into words, assuming space as the separator
+        foreach (var wordText in wordTexts)
         {
-            Text = text;
+            Words.Add(new Word(wordText));
         }
     }
 }
+
+        class Word
+        {
+            public string Text { get; }
+
+            public Word(string text)
+            {
+                Text = text;
+            }
+        }
+
+
+
