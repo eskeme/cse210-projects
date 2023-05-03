@@ -86,6 +86,8 @@ namespace Journal
                 Console.WriteLine("3. Save the journal to a file");
                 Console.WriteLine("4. Load the journal from a file");
                 Console.WriteLine("5. Quit");
+                Console.WriteLine();
+                Console.Write("What would you like to do? ");
                 int choice = int.Parse(Console.ReadLine());
                 Console.WriteLine();
 
