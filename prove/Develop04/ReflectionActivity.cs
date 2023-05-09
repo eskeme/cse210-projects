@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 
 public class ReflectionActivity : BaseActivity {
-    public string description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
     public string[] prompts = {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
@@ -21,8 +20,15 @@ public class ReflectionActivity : BaseActivity {
         "How can you keep this experience in mind in the future?"
     };
 
-    public void RunActivity() {
-        Console.WriteLine(description);
+    public ReflectionActivity() {
+        SetName("Reflection");
+        SetDescription("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+    }
+
+    public override void RunActivity() {
+        Console.WriteLine(GetDescription());
+        StartActivity();
+
         var startTime = DateTime.Now;
         while ((DateTime.Now - startTime).TotalSeconds < duration) {
             var prompt = prompts[new Random().Next(prompts.Length)];

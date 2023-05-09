@@ -1,13 +1,14 @@
-using System;
-using System.Threading;
-
 public class BreathingActivity : BaseActivity
 {
-    public string description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
-
-    public void RunActivity()
+    public BreathingActivity()
     {
-        Console.WriteLine(description);
+        SetName("Breathing Activity");
+        SetDescription("This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.");
+    }
+
+    public override void RunActivity()
+    {
+        Console.WriteLine(GetDescription());
         string[] breaths = { "Breathe in...", "Breathe out..." };
         DateTime startTime = DateTime.Now;
         while ((DateTime.Now - startTime).TotalSeconds < duration)

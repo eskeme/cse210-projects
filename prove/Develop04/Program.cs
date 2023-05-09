@@ -44,8 +44,8 @@ class Program
                     break;
 
                 case 4:
-                    Environment.Exit(0);
                     Console.WriteLine("Goodbye!");
+                    Environment.Exit(0);
                     break;
 
                 default:

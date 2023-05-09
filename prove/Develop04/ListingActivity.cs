@@ -1,8 +1,7 @@
 using System;
 using System.Threading;
 
-class ListingActivity : BaseActivity {
-    public string description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+public class ListingActivity : BaseActivity {
     public string[] prompts = {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
@@ -11,18 +10,19 @@ class ListingActivity : BaseActivity {
         "Who are some of your personal heroes?"
     };
 
-    public void RunActivity() {
-        Console.WriteLine(description);
+    public ListingActivity() {
+        SetName("Listing");
+        SetDescription("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+    }
+
+    public override void RunActivity() {
+        Console.WriteLine(GetDescription());
 
         var prompt = prompts[new Random().Next(prompts.Length)];
         Console.WriteLine(prompt);
         Thread.Sleep(2000);
 
-        Console.Write("Enter duration of activity (in seconds): ");
-        duration = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Get ready to start listing...");
-        Thread.Sleep(3000);
+        StartActivity();
 
         var startTime = DateTime.Now;
         var count = 0;
