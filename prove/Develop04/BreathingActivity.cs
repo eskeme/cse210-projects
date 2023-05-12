@@ -16,7 +16,12 @@ public class BreathingActivity : BaseActivity
             foreach (var breath in breaths)
             {
                 Console.WriteLine(breath);
-                Thread.Sleep(2000);
+                for (int i = 3; i >= 1; i--)
+                {
+                    Console.Write($"{i}...");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine();
             }
         }
         EndActivity((DateTime.Now - startTime).TotalSeconds);
